@@ -19,6 +19,9 @@ import petsMasterRoute from './modules/petsmaster'
 import caseRoute from './modules/case'
 import revenueRoute from './modules/revenue'
 import testechartRoute from './modules/testechart'
+import doctorRouter from './modules/doctor'
+
+import gexingRoute from './modules/gexing'
 
 
 /**
@@ -113,12 +116,16 @@ export const asyncRoutes = [
   petsMasterRoute,
   caseRoute,
   revenueRoute,
+
+  doctorRouter,
+
+  gexingRoute,
   // testechartRoute,
   { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  base:'/dash/',
+  // base:'/dash/',
   mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes

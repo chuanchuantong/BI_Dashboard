@@ -11,7 +11,7 @@
         <el-tab-pane label="诊疗明细" name="diagnosis">
           <diagnosis v-if="currentName=='diagnosis'" />
         </el-tab-pane>
-        <el-tab-pane label="消费明细" name="sale">
+        <el-tab-pane label="商品明细" name="sale">
           <sale v-if="currentName=='sale'" />
         </el-tab-pane>
       </el-tabs>

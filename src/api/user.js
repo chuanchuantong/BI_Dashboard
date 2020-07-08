@@ -29,3 +29,10 @@ export function getUserList(data) {
     method: 'post'
   })
 }
+
+export function getRoleList() {
+  return request({
+    url: '/PSysRole/getRoleList',
+    method: 'post'
+  })
+}

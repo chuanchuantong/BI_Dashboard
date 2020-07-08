@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 表单区域 -->
-    <!-- <el-header>
+    <el-header>
       <el-form :inline="true" class="demo-form-inline">
         <el-form-item label="统计周期">
           <el-date-picker
@@ -10,7 +10,7 @@
             range-separator="至"
             start-placeholder="开始月份"
             end-placeholder="结束月份"
-            value-format="yyyy-MM-dd"
+            value-format="yyyy-MM"
             :picker-options="pickerOptions"
           ></el-date-picker>
         </el-form-item>
@@ -18,7 +18,7 @@
           <el-button type="primary" @click.native="loadSourceData">{{$t('query')}}</el-button>
         </el-form-item>
       </el-form>
-    </el-header>-->
+    </el-header>
     <!-- table区域 -->
     <el-main>
       <div id="echartssource" class="chart" style="height:600px;"></div>
@@ -43,16 +43,34 @@ export default {
   },
   created() {
     var _this = this;
-    _this.loadSourceData();
+    _this.handCurrentDateTime();
   },
   methods: {
+    handCurrentDateTime() {
+      var _this = this;
+      var currentDate = new Date();
+      var year = currentDate.getFullYear();
+      var month = currentDate.getMonth() + 1;
+      currentDate.setMonth(currentDate.getMonth() - 3);
+      var startMonth = currentDate.getMonth() + 1;
+      var newStartMonth = startMonth < 10 ? "0" + startMonth : startMonth;
+      var newEndMonth = month < 10 ? "0" + month : month;
+      var dateStartFormat = `${year}-${newStartMonth}`;
+      var dateEndFormat = `${year}-${newEndMonth}`;
+      _this.months.push(dateStartFormat);
+      _this.months.push(dateEndFormat);
+      _this.loadSourceData();
+    },
     //加载年龄数据
     loadSourceData() {
       var _this = this;
       _this.headData = [];
       _this.dataList = [];
       _this.$store
-        .dispatch("bi/getCustomerSource")
+        .dispatch("bi/getCustomerSource", {
+          start: _this.months[0] + "-01",
+          end: _this.months[1] + "-31"
+        })
         .then(res => {
           for (let t = 0; t < res.length; t++) {
             const element = res[t];
@@ -69,10 +87,15 @@ export default {
           });
         })
         .catch(err => {
-          _this.$message({
-            message: "数据加载失败，请稍后重试",
-            type: "error"
-          });
+          if (err.hasOwnProperty("code")) {
+            _this.headData = [];
+            _this.dataList = [];
+          } else {
+            _this.$message({
+              message: "数据加载失败，请稍后重试",
+              type: "error"
+            });
+          }
           _this.loading = false;
         });
     },

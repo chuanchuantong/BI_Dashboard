@@ -11,7 +11,9 @@ import {
   getRevenueExpend,
   getPMedicinesBuy,
   getPetFrom,
-  getGetCEMs
+  getGetCEMs,
+  getDoctorTest,
+  getZenLiaoCpayments
 } from '@/api/bi'
 
 
@@ -99,9 +101,9 @@ const actions = {
   },
   getCustomerSource({
     commit
-  }) {
+  },params) {
     return new Promise((resolve, reject) => {
-      getCustomerSource().then(response => {
+      getCustomerSource(params).then(response => {
         const {
           data
         } = response
@@ -219,6 +221,34 @@ const actions = {
   }, params) {
     return new Promise((resolve, reject) => {
       getGetCEMs(params).then(response => {
+        const {
+          data
+        } = response
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getDoctorTest({
+    commit
+  }, params) {
+    return new Promise((resolve, reject) => {
+      getDoctorTest(params).then(response => {
+        const {
+          data
+        } = response
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  getZenLiaoCpayments({
+    commit
+  }, params) {
+    return new Promise((resolve, reject) => {
+      getZenLiaoCpayments(params).then(response => {
         const {
           data
         } = response

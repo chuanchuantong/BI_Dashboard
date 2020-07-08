@@ -72,7 +72,9 @@ export default {
     Petsmaster: '宠主统计',
     Case: '病例统计',
     Revenue: '营收统计',
-    Testeachart:'测试Echart'
+    Testeachart:'测试Echart',
+    Doctor:'医生化验统计',
+    Diagtrea:'诊疗各项收入分析'
   },
   navbar: {
     dashboard: '首页',
