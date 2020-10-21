@@ -75,6 +75,7 @@ export default {
     Testeachart:'测试Echart',
     Doctor:'医生化验统计',
     Diagtrea:'诊疗各项收入分析',
+    pmedicineCpayment:'产品销售毛利',
     ProviderSummary:'供应商统计'
   },
   navbar: {

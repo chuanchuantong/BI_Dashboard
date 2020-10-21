@@ -141,6 +141,7 @@ export const asyncRoutes = [
   doctorRouter,
 
   gexingRoute,
+  pmedicinecpayment,
   provideRoute,
   // testechartRoute,
   { path: '*', redirect: '/404', hidden: true }

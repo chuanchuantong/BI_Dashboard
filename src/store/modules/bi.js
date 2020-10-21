@@ -13,11 +13,21 @@ import {
   getPetFrom,
   getGetCEMs,
   getDoctorTest,
+<<<<<<< HEAD
   getZenLiaoCpayments,
   getProviderSummary,
   getProviderDetailSummary
 } from '@/api/bi'
 
+=======
+  getZenLiaoCpayments, 
+  GetPmedicinedCpayments,
+  GetPsysListBykey,
+  getProviderSummary,
+  getProviderDetailSummary
+} from '@/api/bi' 
+import {getListData} from '@/utils/index' 
+>>>>>>> f17f4fecffbba6a0f268b2fb1e85be61736587b1
 
 const state = {
   logData: [],
@@ -273,12 +283,12 @@ const actions = {
         reject(error)
       })
     })
-  },
-  getProviderDetailSummary({
+  }, 
+  GetPmedicinedCpayments({
     commit
   }, params) {
     return new Promise((resolve, reject) => {
-      getProviderDetailSummary(params).then(response => {
+      GetPmedicinedCpayments(params).then(response => {
         const {
           data
         } = response
@@ -288,6 +298,30 @@ const actions = {
       })
     })
   },
+  getPsysListBykey({ commit  },params) {
+    return new Promise((resolve, reject) => { 
+      GetPsysListBykey(params).then(response => {
+        const { data } = response  
+        var list = getListData(data, { id: 'id', pid: 'parentid', children: 'children', lable: 'name' }) 
+        resolve(list)
+      }).catch(error => {
+        reject(error)
+      })
+    })}, 
+  getProviderDetailSummary({
+    commit
+  }, params) {
+    return new Promise((resolve, reject) => {
+      getProviderDetailSummary(params).then(response => {
+        const {
+          data
+        } = response
+        resolve(data) 
+      }).catch(error => {
+        reject(error)
+      })
+    }) 
+  } 
 }
 
 export default {
