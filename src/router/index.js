@@ -20,7 +20,7 @@ import caseRoute from './modules/case'
 import revenueRoute from './modules/revenue'
 import testechartRoute from './modules/testechart'
 import provideRoute from './modules/provider'
-
+import pmedicinecpayment from './modules/pmedicinecpayment'
 import doctorRouter from './modules/doctor'
 
 import gexingRoute from './modules/gexing'
