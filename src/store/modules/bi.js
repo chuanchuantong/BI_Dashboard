@@ -13,13 +13,6 @@ import {
   getPetFrom,
   getGetCEMs,
   getDoctorTest,
-<<<<<<< HEAD
-  getZenLiaoCpayments,
-  getProviderSummary,
-  getProviderDetailSummary
-} from '@/api/bi'
-
-=======
   getZenLiaoCpayments, 
   GetPmedicinedCpayments,
   GetPsysListBykey,
@@ -27,7 +20,6 @@ import {
   getProviderDetailSummary
 } from '@/api/bi' 
 import {getListData} from '@/utils/index' 
->>>>>>> f17f4fecffbba6a0f268b2fb1e85be61736587b1
 
 const state = {
   logData: [],
